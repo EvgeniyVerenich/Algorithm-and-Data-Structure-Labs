@@ -1,7 +1,6 @@
 package OOPLabs;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +21,7 @@ public class TaxiCompany {
     }
 
     public void companyPrice(){
-        System.out.println(carList.stream().mapToDouble(Automobile::getPrice).sum());
+        System.out.println("Total price: " + carList.stream().mapToDouble(Automobile::getPrice).sum());
     }
 
     private HashMap<Automobile, Double> createFuelRateList(){
@@ -35,13 +34,15 @@ public class TaxiCompany {
     }
 
     public void fuelSort(){
+        System.out.println("Fuel sort: ");
         createFuelRateList().entrySet().stream().sorted(Map.Entry.<Automobile, Double>comparingByValue().reversed())
                 .forEach(System.out::println);
     }
 
     public void findCarBySpeed(double minSpeed, double maxSpeed){
+        System.out.println("Car with speed limits : ");
         for (Automobile car : carList) {
-            System.out.println(car.getMaxSpeed() >= minSpeed || car.getMaxSpeed() <= maxSpeed ? car.toString() + "->" + car.getMaxSpeed():"");
+            System.out.println(car.getMaxSpeed() >= minSpeed && car.getMaxSpeed() <= maxSpeed ? car.toString() + "->" + car.getMaxSpeed() : "");
         }
     }
 }
